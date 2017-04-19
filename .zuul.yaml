@@ -1,5 +1,28 @@
+- secret:
+    name: test_secret
+    data:
+      clear_message: hey there
+      enc_message: !encrypted/pkcs1-oaep |
+        siTc1xApxAEN/fveIbx/spUWqzwy0IpyBP16Z1fVQrxIo2IzU4e3xjS1IXAFUoCLUYXC77MxBhQP
+        pRf+JvCbvC6PmJd+6Rt0Zy5L8cf3R4mQ3DtCz0IBdb/PTG1GR0K8yLVcEbIsMl3od65+ql+JALvF
+        fKiSHm9WdjYAXp8ZffTk1jGIlukOo+6dZlnEi8NefTLPAAgCXp7t8LUeOXw99GrWwSem2pXJFNo8
+        wZZMFbM0z0SuliHa3rXv/FZHUhFmByeLqnJDIaad9+M4/r0EyJsWx2WAcvmFBtelCSToKN/NeuaS
+        ksDqjcS+MkGwhU6pRwWwaOZHm7l/zVETVAzEwTpsSlYQ9tLm5RWEfVc8aTWE6cjuw57aXLAU8orT
+        6yE2FsGV43+ncnZdbonyTWHI6cCRWx41RvoTFXOxVt87a7zdwB1xImHIR4yvYaZgA0I4PmL9W3LJ
+        Nj3GRnJCJMP8+k/7JFRNQQcq4LtGm22RuLBou7dk3IOzF6ezJidJ7vfdlCXIrYn0L8KPW4o40Xk8
+        6jnyyGK2EVIOZ9GivROxxrCODIFSTYqjki7vaGIyun0KRVj3fVgHTiDgZrQSmr5VWwKWSED2EFFX
+        M4G/CwyEvWY+YX00QAHPZ2RrVA5sxxl04bUMuqQtmRTdlPRhBjfNyswIgK8pdHEBh/b9oV46Uqo=
+
+
 - project:
     name: BonnyCI/sandbox-v3
     gerrithub_check:
       jobs:
-        - bonnyci
+        - bonnyci:
+            vars:
+              bonncyci_environment:
+                BONNYCI_CLEAR_MESSAGE: "{{ test_secret.clear_message }}"
+                BONNYCI_ENC_MESSAGE: "{{ test_secret.enc_message }}"
+            auth:
+              secrets:
+                - test-secret
