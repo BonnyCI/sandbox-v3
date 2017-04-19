@@ -1,4 +1,5 @@
 #!/bin/bash
 
-sleep 30
-echo "True"
+sleep 5
+echo "CLEAR MESSAGE: $BONNYCI_CLEAR_MESSAGE"
+echo "ENC MESSAGE: $BONNYCI_ENC_MESSAGE"
